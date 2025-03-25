@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BurgerMaster - Os melhores hambúrgueres artesanais</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B00;
+            --secondary: #FF9500;
+            --dark: #1A1A1A;
+            --light: #FFFFFF;
+            --gray: #F5F5F5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--gray);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light);
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--light);
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .menu-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .menu-item {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+        
+        .menu-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .menu-item p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .price span {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .about-section {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 5rem 5%;
+        }
+        
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+            bottom: -8px;
+            left: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #ccc;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+            }
+            
+            .nav-links li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-hamburger"></i>
+                <span>BurgerMaster</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#menu">Cardápio</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Os Melhores Hamburgueres Artesanais</h1>
+        <p>Feitos com ingredientes frescos e selecionados, nosso hambúrguer é uma experiência única de sabor</p>
+        <div>
+            <a href="#menu" class="btn">Ver Cardápio</a>
+            <a href="#contact" class="btn btn-outline">Faça seu Pedido</a>
+        </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+        <div class="section-title">
+            <h2>Nosso Cardápio</h2>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Burger Clássico">
+                <div class="menu-item-content">
+                    <h3>Burger Clássico</h3>
+                    <p>Pão brioche, hambúrguer 180g, queijo cheddar, alface, tomate e molho especial</p>
+                    <div class="price">
+                        <span>R$ 24,90</span>
+                        <button class="btn">Pedir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Burger Bacon">
+                <div class="menu-item-content">
+                    <h3>Burger Bacon</h3>
+                    <p>Pão brioche, hambúrguer 180g, queijo cheddar, bacon crocante, cebola caramelizada e molho barbecue</p>
+                    <div class="price">
+                        <span>R$ 29,90</span>
+                        <button class="btn">Pedir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Burger Picante">
+                <div class="menu-item-content">
+                    <h3>Burger Picante</h3>
+                    <p>Pão brioche, hambúrguer 180g, queijo pepper jack, pimenta jalapeño, cebola roxa e molho picante</p>
+                    <div class="price">
+                        <span>R$ 27,90</span>
+                        <button class="btn">Pedir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Burger Vegetariano">
+                <div class="menu-item-content">
+                    <h3>Burger Vegetariano</h3>
+                    <p>Pão integral, hambúrguer de grão de bico, queijo coalho, rúcula, tomate seco e maionese de ervas</p>
+                    <div class="price">
+                        <span>R$ 25,90</span>
+                        <button class="btn">Pedir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Burger Duplo">
+                <div class="menu-item-content">
+                    <h3>Burger Duplo</h3>
+                    <p>Pão brioche, 2 hambúrgueres 180g, duplo cheddar, cebola crispy e molho especial</p>
+                    <div class="price">
+                        <span>R$ 34,90</span>
+                        <button class="btn">Pedir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1608767221051-2b9d18f35a2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Burger Trufado">
+                <div class="menu-item-content">
+                    <h3>Burger Trufado</h3>
+                    <p>Pão brioche com gergelim, hambúrguer 200g, queijo brie, cogumelos salteados e maionese trufada</p>
+                    <div class="price">
+                        <span>R$ 39,90</span>
+                        <button class="btn">Pedir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sobre nós">
+            </div>
+            <div class="about-content">
+                <h2>Sobre Nós</h2>
+                <p>A BurgerMaster nasceu da paixão por hambúrgueres artesanais e da busca pela perfeição em cada detalhe. Nossa missão é oferecer uma experiência gastronômica única, onde qualidade e sabor se encontram.</p>
+                <p>Utilizamos apenas ingredientes frescos e selecionados, com carne 100% bovina de primeira qualidade, pães artesanais assados diariamente e molhos exclusivos desenvolvidos por nossos chefs.</p>
+                <p>Nossa equipe é formada por apaixonados por gastronomia que estão sempre inovando para trazer o melhor burger experience para você.</p>
+                <a href="#contact" class="btn">Conheça nossa história</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="section-title">
+            <h2>Contato</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Informações</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rua dos Hamburgueres, 123 - Centro</p>
+                <p><i class="fas fa-phone"></i> (11) 98765-4321</p>
+                <p><i class="fas fa-envelope"></i> contato@burgermaster.com.br</p>
+                <p><i class="fas fa-clock"></i> Terça a Domingo: 18h - 23h</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Faça seu pedido</h3>
+                <form>
+                    <input type="text" placeholder="Seu nome" required>
+                    <input type="tel" placeholder="Seu telefone" required>
+                    <input type="email" placeholder="Seu e-mail" required>
+                    <textarea placeholder="Seu pedido e endereço para entrega" required></textarea>
+                    <button type="submit" class="btn">Enviar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>BurgerMaster</h3>
+                <p>Os melhores hambúrgueres artesanais da cidade, feitos com paixão e ingredientes de qualidade.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#menu">Cardápio</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Horário</h3>
+                <ul>
+                    <li>Terça a Quinta: 18h - 22h</li>
+                    <li>Sexta e Sábado: 18h - 23h</li>
+                    <li>Domingo: 18h - 22h</li>
+                    <li>Segunda: Fechado</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 BurgerMaster. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
