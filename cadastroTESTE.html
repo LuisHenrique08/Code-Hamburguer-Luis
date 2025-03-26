@@ -439,7 +439,7 @@
                     sessionStorage.setItem('currentUser', JSON.stringify(result.user));
                     
                     // Redirecionar para a página inicial
-                    window.location.href = 'index.html'; // Altere para o nome da sua página inicial
+                    window.location.href = 'indexTESTE.html'; // Altere para o nome da sua página inicial
                 } else {
                     alert(result.message);
                 }
@@ -447,7 +447,7 @@
             
             // Verificar se já está logado
             if (sessionStorage.getItem('currentUser')) {
-                window.location.href = 'index.html'; // Redireciona se já estiver logado
+                window.location.href = 'indexTESTE.html'; // Redireciona se já estiver logado
             }
         });
     </script>
