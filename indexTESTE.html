@@ -642,5 +642,530 @@
             </div>
         </div>
     </footer>
+    <!-- Substitua o código anterior por este, antes do </body> -->
+
+<!-- Botão flutuante de acessibilidade -->
+<div class="accessibility-floating-btn" id="accessibilityBtn">
+    <i class="fas fa-universal-access"></i>
+</div>
+
+<!-- Painel de acessibilidade -->
+<div class="accessibility-panel" id="accessibilityPanel">
+    <div class="accessibility-header">
+        <h3>Acessibilidade</h3>
+        <button class="close-panel" id="closePanel">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="accessibility-section">
+        <h4>Ajustes de Texto</h4>
+        <div class="accessibility-controls">
+            <button class="acc-btn" id="increaseFont">A+ Aumentar Fonte</button>
+            <button class="acc-btn" id="decreaseFont">A- Diminuir Fonte</button>
+            <button class="acc-btn" id="resetFont">A Resetar Fonte</button>
+        </div>
+    </div>
+    
+    <div class="accessibility-section">
+        <h4>Ajustes de Cores</h4>
+        <div class="accessibility-controls">
+            <button class="acc-btn" id="highContrast">Alto Contraste</button>
+            <button class="acc-btn" id="lightBackground">Fundo Claro</button>
+            <button class="acc-btn" id="blueContrast">Contraste Azul</button>
+            <button class="acc-btn" id="resetColors">Cores Originais</button>
+        </div>
+    </div>
+    
+    <div class="accessibility-section">
+        <h4>Navegação</h4>
+        <div class="accessibility-controls">
+            <button class="acc-btn" id="highlightLinks">Destacar Links</button>
+            <button class="acc-btn" id="readPage">Ler Página</button>
+            <button class="acc-btn" id="pauseReading">Pausar Leitura</button>
+        </div>
+    </div>
+    
+    <div class="accessibility-section">
+        <h4>Outras Opções</h4>
+        <div class="accessibility-controls">
+            <button class="acc-btn" id="dyslexiaFont">Fonte para Dislexia</button>
+            <button class="acc-btn" id="bigCursor">Cursor Grande</button>
+            <button class="acc-btn" id="animationsOff">Desativar Animações</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilos do sistema de acessibilidade */
+    .accessibility-floating-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background-color: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .accessibility-floating-btn:hover {
+        transform: scale(1.1);
+        background-color: var(--primary-dark);
+    }
+    
+    .accessibility-floating-btn i {
+        font-size: 24px;
+        color: white;
+    }
+    
+    .accessibility-panel {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 320px;
+        background: var(--dark);
+        border: 2px solid var(--primary);
+        border-radius: 10px;
+        padding: 20px;
+        z-index: 1001;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        display: none;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .accessibility-panel.active {
+        display: block;
+    }
+    
+    .accessibility-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .accessibility-header h3 {
+        color: var(--primary);
+        margin: 0;
+        font-size: 1.3rem;
+    }
+    
+    .close-panel {
+        background: none;
+        border: none;
+        color: var(--light);
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 5px;
+    }
+    
+    .accessibility-section {
+        margin-bottom: 20px;
+    }
+    
+    .accessibility-section h4 {
+        color: var(--light);
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+    
+    .accessibility-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    
+    .acc-btn {
+        background-color: var(--gray);
+        color: var(--light);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
+        text-align: center;
+    }
+    
+    .acc-btn:hover {
+        background-color: var(--primary);
+        color: var(--black);
+    }
+    
+    .acc-btn.active {
+        background-color: var(--primary);
+        color: var(--black);
+        font-weight: bold;
+    }
+    
+    /* Modos de contraste CORRIGIDOS */
+    .high-contrast-mode {
+        --original-primary: #FF6B00;
+        --original-dark: #121212;
+        --original-light: #FFFFFF;
+        --original-gray: #1E1E1E;
+        --original-black: #000000;
+        
+        --primary: #FFD700 !important;
+        --primary-dark: #FFA500 !important;
+        --dark: #000000 !important;
+        --light: #FFFFFF !important;
+        --gray: #222222 !important;
+        --black: #000000 !important;
+        
+        background-color: var(--black) !important;
+        color: var(--light) !important;
+    }
+    
+    .high-contrast-mode header,
+    .high-contrast-mode footer,
+    .high-contrast-mode .menu-item,
+    .high-contrast-mode .feature-card,
+    .high-contrast-mode .cart-container,
+    .high-contrast-mode .auth-box,
+    .high-contrast-mode .feedback-form,
+    .high-contrast-mode .reviews-container {
+        background-color: var(--dark) !important;
+        border-color: var(--primary) !important;
+    }
+    
+    .high-contrast-mode .nav-links a,
+    .high-contrast-mode h1,
+    .high-contrast-mode h2,
+    .high-contrast-mode h3,
+    .high-contrast-mode h4 {
+        color: var(--primary) !important;
+    }
+    
+    .light-background-mode {
+        --primary: #FF6B00 !important;
+        --primary-dark: #E05A00 !important;
+        --dark: #F5F5F5 !important;
+        --light: #333333 !important;
+        --gray: #E0E0E0 !important;
+        --black: #FFFFFF !important;
+        
+        background-color: var(--black) !important;
+        color: var(--light) !important;
+    }
+    
+    .blue-contrast-mode {
+        --primary: #0066CC !important;
+        --primary-dark: #004999 !important;
+        --dark: #003366 !important;
+        --light: #FFFFFF !important;
+        --gray: #1E1E1E !important;
+        --black: #000033 !important;
+        
+        background-color: var(--black) !important;
+        color: var(--light) !important;
+    }
+    
+    .dyslexia-font {
+        font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
+        letter-spacing: 0.5px !important;
+        line-height: 1.8 !important;
+    }
+    
+    .big-cursor {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23FF6B00" stroke="%23FFFFFF" stroke-width="2"/></svg>') 16 16, pointer !important;
+    }
+    
+    .big-cursor a,
+    .big-cursor button {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23FF6B00" stroke="%23FFFFFF" stroke-width="2"/></svg>') 16 16, pointer !important;
+    }
+    
+    .no-animations * {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .highlighted-links a {
+        background-color: yellow !important;
+        color: black !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+        font-weight: bold !important;
+    }
+    
+    @media (max-width: 768px) {
+        .accessibility-panel {
+            width: 280px;
+            right: 20px;
+            bottom: 90px;
+        }
+        
+        .accessibility-controls {
+            grid-template-columns: 1fr;
+        }
+        
+        .accessibility-floating-btn {
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Elementos do DOM
+        const accessibilityBtn = document.getElementById('accessibilityBtn');
+        const accessibilityPanel = document.getElementById('accessibilityPanel');
+        const closePanel = document.getElementById('closePanel');
+        
+        // Botões de controle
+        const increaseFont = document.getElementById('increaseFont');
+        const decreaseFont = document.getElementById('decreaseFont');
+        const resetFont = document.getElementById('resetFont');
+        const highContrast = document.getElementById('highContrast');
+        const lightBackground = document.getElementById('lightBackground');
+        const blueContrast = document.getElementById('blueContrast');
+        const resetColors = document.getElementById('resetColors');
+        const highlightLinks = document.getElementById('highlightLinks');
+        const dyslexiaFont = document.getElementById('dyslexiaFont');
+        const bigCursor = document.getElementById('bigCursor');
+        const animationsOff = document.getElementById('animationsOff');
+        const readPage = document.getElementById('readPage');
+        const pauseReading = document.getElementById('pauseReading');
+        
+        // Estado das funcionalidades
+        let currentFontSize = 100;
+        let isReading = false;
+        let speechSynthesis = window.speechSynthesis;
+        
+        // Alternar painel de acessibilidade
+        accessibilityBtn.addEventListener('click', function() {
+            accessibilityPanel.classList.toggle('active');
+        });
+        
+        closePanel.addEventListener('click', function() {
+            accessibilityPanel.classList.remove('active');
+        });
+        
+        // Fechar painel ao clicar fora
+        document.addEventListener('click', function(event) {
+            if (!accessibilityPanel.contains(event.target) && 
+                !accessibilityBtn.contains(event.target) && 
+                accessibilityPanel.classList.contains('active')) {
+                accessibilityPanel.classList.remove('active');
+            }
+        });
+        
+        // Controles de texto
+        increaseFont.addEventListener('click', function() {
+            currentFontSize += 10;
+            if (currentFontSize > 200) currentFontSize = 200;
+            document.body.style.fontSize = currentFontSize + '%';
+            savePreference('fontSize', currentFontSize);
+        });
+        
+        decreaseFont.addEventListener('click', function() {
+            currentFontSize -= 10;
+            if (currentFontSize < 70) currentFontSize = 70;
+            document.body.style.fontSize = currentFontSize + '%';
+            savePreference('fontSize', currentFontSize);
+        });
+        
+        resetFont.addEventListener('click', function() {
+            currentFontSize = 100;
+            document.body.style.fontSize = '100%';
+            savePreference('fontSize', 100);
+        });
+        
+        // Controles de cores CORRIGIDOS
+        highContrast.addEventListener('click', function() {
+            resetAllColorModes();
+            document.body.classList.add('high-contrast-mode');
+            highContrast.classList.add('active');
+            savePreference('colorMode', 'high-contrast');
+        });
+        
+        lightBackground.addEventListener('click', function() {
+            resetAllColorModes();
+            document.body.classList.add('light-background-mode');
+            lightBackground.classList.add('active');
+            savePreference('colorMode', 'light-background');
+        });
+        
+        blueContrast.addEventListener('click', function() {
+            resetAllColorModes();
+            document.body.classList.add('blue-contrast-mode');
+            blueContrast.classList.add('active');
+            savePreference('colorMode', 'blue-contrast');
+        });
+        
+        resetColors.addEventListener('click', function() {
+            resetAllColorModes();
+            savePreference('colorMode', 'default');
+        });
+        
+        function resetAllColorModes() {
+            document.body.classList.remove('high-contrast-mode', 'light-background-mode', 'blue-contrast-mode');
+            [highContrast, lightBackground, blueContrast].forEach(btn => btn.classList.remove('active'));
+        }
+        
+        // Outras funcionalidades
+        highlightLinks.addEventListener('click', function() {
+            document.body.classList.toggle('highlighted-links');
+            toggleActiveClass(highlightLinks);
+            savePreference('highlightLinks', document.body.classList.contains('highlighted-links'));
+        });
+        
+        dyslexiaFont.addEventListener('click', function() {
+            document.body.classList.toggle('dyslexia-font');
+            toggleActiveClass(dyslexiaFont);
+            savePreference('dyslexiaFont', document.body.classList.contains('dyslexia-font'));
+        });
+        
+        bigCursor.addEventListener('click', function() {
+            document.body.classList.toggle('big-cursor');
+            toggleActiveClass(bigCursor);
+            savePreference('bigCursor', document.body.classList.contains('big-cursor'));
+        });
+        
+        animationsOff.addEventListener('click', function() {
+            document.body.classList.toggle('no-animations');
+            toggleActiveClass(animationsOff);
+            savePreference('noAnimations', document.body.classList.contains('no-animations'));
+        });
+        
+        // Leitura de página (text-to-speech)
+        readPage.addEventListener('click', function() {
+            if (isReading) {
+                speechSynthesis.cancel();
+                isReading = false;
+                return;
+            }
+            
+            const mainContent = document.querySelector('main') || document.body;
+            const pageText = mainContent.textContent.replace(/\s+/g, ' ').trim();
+            
+            if (pageText.length > 1000) {
+                if (confirm('O texto é muito longo. Deseja ouvir apenas o conteúdo principal?')) {
+                    const importantText = extractImportantText();
+                    readText(importantText);
+                } else {
+                    readText(pageText);
+                }
+            } else {
+                readText(pageText);
+            }
+        });
+        
+        pauseReading.addEventListener('click', function() {
+            if (speechSynthesis.speaking) {
+                if (speechSynthesis.paused) {
+                    speechSynthesis.resume();
+                    isReading = true;
+                } else {
+                    speechSynthesis.pause();
+                    isReading = false;
+                }
+            }
+        });
+        
+        function readText(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'pt-BR';
+            utterance.rate = 0.9;
+            utterance.volume = 0.8;
+            
+            utterance.onend = function() {
+                isReading = false;
+            };
+            
+            speechSynthesis.speak(utterance);
+            isReading = true;
+        }
+        
+        function extractImportantText() {
+            // Extrai texto dos elementos mais importantes
+            const importantElements = [
+                ...document.querySelectorAll('h1, h2, h3, h4, h5, h6'),
+                ...document.querySelectorAll('.menu-item h3, .feature-card h3, .section-title'),
+                ...document.querySelectorAll('p:not(footer p)')
+            ];
+            
+            return importantElements.map(el => el.textContent).join('. ').replace(/\s+/g, ' ').trim();
+        }
+        
+        // Funções auxiliares
+        function toggleActiveClass(element) {
+            element.classList.toggle('active');
+        }
+        
+        function savePreference(key, value) {
+            localStorage.setItem(`accessibility_${key}`, JSON.stringify(value));
+        }
+        
+        function loadPreference(key) {
+            const value = localStorage.getItem(`accessibility_${key}`);
+            return value ? JSON.parse(value) : null;
+        }
+        
+        // Carregar preferências salvas
+        function loadSavedPreferences() {
+            // Tamanho da fonte
+            const savedFontSize = loadPreference('fontSize');
+            if (savedFontSize) {
+                currentFontSize = savedFontSize;
+                document.body.style.fontSize = currentFontSize + '%';
+            }
+            
+            // Modo de cores
+            const colorMode = loadPreference('colorMode');
+            if (colorMode) {
+                resetAllColorModes();
+                if (colorMode === 'high-contrast') {
+                    document.body.classList.add('high-contrast-mode');
+                    highContrast.classList.add('active');
+                } else if (colorMode === 'light-background') {
+                    document.body.classList.add('light-background-mode');
+                    lightBackground.classList.add('active');
+                } else if (colorMode === 'blue-contrast') {
+                    document.body.classList.add('blue-contrast-mode');
+                    blueContrast.classList.add('active');
+                }
+            }
+            
+            // Outras configurações
+            if (loadPreference('highlightLinks')) {
+                document.body.classList.add('highlighted-links');
+                highlightLinks.classList.add('active');
+            }
+            
+            if (loadPreference('dyslexiaFont')) {
+                document.body.classList.add('dyslexia-font');
+                dyslexiaFont.classList.add('active');
+            }
+            
+            if (loadPreference('bigCursor')) {
+                document.body.classList.add('big-cursor');
+                bigCursor.classList.add('active');
+            }
+            
+            if (loadPreference('noAnimations')) {
+                document.body.classList.add('no-animations');
+                animationsOff.classList.add('active');
+            }
+        }
+        
+        // Carregar preferências quando a página carregar
+        loadSavedPreferences();
+    });
+</script>
 </body>
 </html>
