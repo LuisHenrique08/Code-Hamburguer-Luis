@@ -609,530 +609,912 @@
             </div>
         </div>
     </footer>
-    <!-- Substitua o código anterior por este, antes do </body> -->
 
 <!-- Botão flutuante de acessibilidade -->
-<div class="accessibility-floating-btn" id="accessibilityBtn">
+<button class="accessibility-floating-btn" id="accessibilityBtn" aria-label="Abrir menu de acessibilidade">
     <i class="fas fa-universal-access"></i>
-</div>
+    <span>Acessibilidade</span>
+</button>
+
+<!-- Overlay escuro -->
+<div class="accessibility-overlay" id="accessibilityOverlay"></div>
 
 <!-- Painel de acessibilidade -->
 <div class="accessibility-panel" id="accessibilityPanel">
     <div class="accessibility-header">
-        <h3>Acessibilidade</h3>
-        <button class="close-panel" id="closePanel">
+        <h2>
+            <i class="fas fa-universal-access"></i>
+            Acessibilidade
+        </h2>
+        <button class="close-btn" id="closeAccessibility" aria-label="Fechar menu de acessibilidade">
             <i class="fas fa-times"></i>
         </button>
     </div>
-    
-    <div class="accessibility-section">
-        <h4>Ajustes de Texto</h4>
-        <div class="accessibility-controls">
-            <button class="acc-btn" id="increaseFont">A+ Aumentar Fonte</button>
-            <button class="acc-btn" id="decreaseFont">A- Diminuir Fonte</button>
-            <button class="acc-btn" id="resetFont">A Resetar Fonte</button>
+
+    <div class="accessibility-content">
+        <!-- Seção de Ajustes de Texto -->
+        <div class="accessibility-section">
+            <h3>A. Ajustes de Texto</h3>
+            <p>Tamanho, Espaçamento e Formatação de Texto</p>
+
+            <div class="control-group">
+                <label for="fontSize">Tamanho da Letra</label>
+                <div class="slider-container">
+                    <input type="range" id="fontSize" min="80" max="200" value="100" step="10">
+                    <span class="slider-value" id="fontSizeValue">100%</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="lineHeight">Espaço Entre Linhas</label>
+                <div class="slider-container">
+                    <input type="range" id="lineHeight" min="1.2" max="2.5" value="1.6" step="0.1">
+                    <span class="slider-value" id="lineHeightValue">1.6</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="letterSpacing">Espaço Entre Letras</label>
+                <div class="slider-container">
+                    <input type="range" id="letterSpacing" min="0" max="3" value="0" step="0.5">
+                    <span class="slider-value" id="letterSpacingValue">0px</span>
+                </div>
+            </div>
+
+            <div class="toggle-group">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="dyslexiaMode">
+                    <span class="toggle-slider"></span>
+                    Fonte para Dislexia
+                </label>
+
+                <label class="toggle-switch">
+                    <input type="checkbox" id="boldText">
+                    <span class="toggle-slider"></span>
+                    Texto em Negrito
+                </label>
+            </div>
         </div>
-    </div>
-    
-    <div class="accessibility-section">
-        <h4>Ajustes de Cores</h4>
-        <div class="accessibility-controls">
-            <button class="acc-btn" id="highContrast">Alto Contraste</button>
-            <button class="acc-btn" id="lightBackground">Fundo Claro</button>
-            <button class="acc-btn" id="blueContrast">Contraste Azul</button>
-            <button class="acc-btn" id="resetColors">Cores Originais</button>
+
+        <!-- Seção de Ajustes de Cores -->
+        <div class="accessibility-section">
+            <h3>B. Ajustes de Cores</h3>
+            <p>Contraste e Esquemas de Cores</p>
+
+            <div class="color-schemes">
+                <button class="color-scheme-btn" data-scheme="default" aria-label="Esquema de cores padrão">
+                    <div class="color-preview default"></div>
+                    Original
+                </button>
+
+
+
+                <button class="color-scheme-btn" data-scheme="light" aria-label="Modo claro">
+                    <div class="color-preview light"></div>
+                    Fundo Claro
+                </button>
+
+
+
+
+            </div>
+
+            <div class="toggle-group">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="highlightLinks">
+                    <span class="toggle-slider"></span>
+                    Destacar Links
+                </label>
+
+                <label class="toggle-switch">
+                    <input type="checkbox" id="invertColors">
+                    <span class="toggle-slider"></span>
+                    Inverter Cores
+                </label>
+            </div>
         </div>
-    </div>
-    
-    <div class="accessibility-section">
-        <h4>Navegação</h4>
-        <div class="accessibility-controls">
-            <button class="acc-btn" id="highlightLinks">Destacar Links</button>
-            <button class="acc-btn" id="readPage">Ler Página</button>
-            <button class="acc-btn" id="pauseReading">Pausar Leitura</button>
+
+        <!-- Seção de Navegação -->
+        <div class="accessibility-section">
+            <h3>C. Navegação e Comportamento</h3>
+            <p>Controles de Navegação e Interação</p>
+
+            <div class="toggle-group">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="bigCursor">
+                    <span class="toggle-slider"></span>
+                    Cursor Grande
+                </label>
+
+                <label class="toggle-switch">
+                    <input type="checkbox" id="disableAnimations">
+                    <span class="toggle-slider"></span>
+                    Desativar Animações
+                </label>
+
+                <label class="toggle-switch">
+                    <input type="checkbox" id="readingGuide">
+                    <span class="toggle-slider"></span>
+                    Guia de Leitura
+                </label>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" id="readAloud">
+                    <i class="fas fa-volume-up"></i>
+                    Ler Página
+                </button>
+                <button class="action-btn" id="pauseReading">
+                    <i class="fas fa-pause"></i>
+                    Pausar
+                </button>
+                <button class="action-btn" id="stopReading">
+                    <i class="fas fa-stop"></i>
+                    Parar
+                </button>
+            </div>
         </div>
-    </div>
-    
-    <div class="accessibility-section">
-        <h4>Outras Opções</h4>
-        <div class="accessibility-controls">
-            <button class="acc-btn" id="dyslexiaFont">Fonte para Dislexia</button>
-            <button class="acc-btn" id="bigCursor">Cursor Grande</button>
-            <button class="acc-btn" id="animationsOff">Desativar Animações</button>
+
+        <!-- Botões de ação -->
+        <div class="accessibility-actions">
+            <button class="secondary-btn" id="resetSettings">
+                <i class="fas fa-undo"></i>
+                Restaurar Padrões
+            </button>
+            <button class="secondary-btn" id="saveSettings">
+                <i class="fas fa-save"></i>
+                Salvar Configurações
+            </button>
         </div>
     </div>
 </div>
 
 <style>
-    /* Estilos do sistema de acessibilidade */
+    /* Sistema de Acessibilidade */
     .accessibility-floating-btn {
         position: fixed;
         bottom: 30px;
         right: 30px;
-        width: 60px;
-        height: 60px;
-        background-color: var(--primary);
-        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 25px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        gap: 10px;
         cursor: pointer;
-        z-index: 1000;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        z-index: 10000;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         transition: all 0.3s ease;
+        font-weight: 600;
+        font-size: 16px;
     }
-    
+
     .accessibility-floating-btn:hover {
-        transform: scale(1.1);
-        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.4);
     }
-    
-    .accessibility-floating-btn i {
-        font-size: 24px;
-        color: white;
+
+    .accessibility-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 10001;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
-    
+
+    .accessibility-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
     .accessibility-panel {
         position: fixed;
-        bottom: 100px;
-        right: 30px;
-        width: 320px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        width: 90%;
+        max-width: 800px;
+        max-height: 80vh;
         background: var(--dark);
         border: 2px solid var(--primary);
-        border-radius: 10px;
-        padding: 20px;
-        z-index: 1001;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        border-radius: 15px;
+        z-index: 10002;
         display: none;
-        max-height: 80vh;
+        opacity: 0;
         overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        transition: all 0.3s ease;
     }
-    
+
     .accessibility-panel.active {
         display: block;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
     }
-    
+
     .accessibility-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 25px;
+        border-bottom: 2px solid rgba(255,107,0,0.2);
+        background: rgba(0,0,0,0.3);
     }
-    
-    .accessibility-header h3 {
+
+    .accessibility-header h2 {
         color: var(--primary);
         margin: 0;
-        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
     }
-    
-    .close-panel {
+
+    .close-btn {
         background: none;
         border: none;
         color: var(--light);
-        font-size: 1.2rem;
+        font-size: 20px;
         cursor: pointer;
-        padding: 5px;
+        padding: 8px;
+        border-radius: 5px;
+        transition: all 0.2s ease;
     }
-    
+
+    .close-btn:hover {
+        background: var(--primary);
+        color: var(--black);
+    }
+
+    .accessibility-content {
+        padding: 25px;
+    }
+
     .accessibility-section {
+        margin-bottom: 30px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .accessibility-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    .accessibility-section h3 {
+        color: var(--primary);
+        margin: 0 0 8px 0;
+        font-size: 20px;
+    }
+
+    .accessibility-section p {
+        color: #aaa;
+        margin: 0 0 20px 0;
+        font-size: 14px;
+    }
+
+    .control-group {
         margin-bottom: 20px;
     }
-    
-    .accessibility-section h4 {
-        color: var(--light);
+
+    .control-group label {
+        display: block;
         margin-bottom: 10px;
-        font-size: 1rem;
-    }
-    
-    .accessibility-controls {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
-    
-    .acc-btn {
-        background-color: var(--gray);
         color: var(--light);
-        border: 1px solid rgba(255,255,255,0.1);
-        padding: 8px 12px;
-        border-radius: 5px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .slider-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    input[type="range"] {
+        flex: 1;
+        height: 6px;
+        background: var(--gray);
+        border-radius: 3px;
+        outline: none;
+        -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--primary);
+        border-radius: 50%;
         cursor: pointer;
-        font-size: 0.85rem;
-        transition: all 0.2s ease;
+        border: 2px solid white;
+    }
+
+    .slider-value {
+        min-width: 50px;
         text-align: center;
-    }
-    
-    .acc-btn:hover {
-        background-color: var(--primary);
-        color: var(--black);
-    }
-    
-    .acc-btn.active {
-        background-color: var(--primary);
-        color: var(--black);
+        color: var(--primary);
         font-weight: bold;
+        font-size: 14px;
     }
-    
-    /* Modos de contraste CORRIGIDOS */
-    .high-contrast-mode {
-        --original-primary: #FF6B00;
-        --original-dark: #121212;
-        --original-light: #FFFFFF;
-        --original-gray: #1E1E1E;
-        --original-black: #000000;
-        
-        --primary: #FFD700 !important;
-        --primary-dark: #FFA500 !important;
-        --dark: #000000 !important;
-        --light: #FFFFFF !important;
-        --gray: #222222 !important;
-        --black: #000000 !important;
-        
-        background-color: var(--black) !important;
-        color: var(--light) !important;
+
+    .toggle-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
     }
-    
-    .high-contrast-mode header,
-    .high-contrast-mode footer,
-    .high-contrast-mode .menu-item,
-    .high-contrast-mode .feature-card,
-    .high-contrast-mode .cart-container,
-    .high-contrast-mode .auth-box,
-    .high-contrast-mode .feedback-form,
-    .high-contrast-mode .reviews-container {
-        background-color: var(--dark) !important;
-        border-color: var(--primary) !important;
+
+    .toggle-switch {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        color: var(--light);
+        font-size: 14px;
     }
-    
-    .high-contrast-mode .nav-links a,
-    .high-contrast-mode h1,
-    .high-contrast-mode h2,
-    .high-contrast-mode h3,
-    .high-contrast-mode h4 {
-        color: var(--primary) !important;
+
+    .toggle-slider {
+        position: relative;
+        width: 50px;
+        height: 24px;
+        background: var(--gray);
+        border-radius: 12px;
+        transition: all 0.3s ease;
     }
-    
-    .light-background-mode {
-        --primary: #FF6B00 !important;
-        --primary-dark: #E05A00 !important;
-        --dark: #F5F5F5 !important;
-        --light: #333333 !important;
-        --gray: #E0E0E0 !important;
-        --black: #FFFFFF !important;
-        
-        background-color: var(--black) !important;
-        color: var(--light) !important;
+
+    .toggle-slider::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--light);
+        border-radius: 50%;
+        top: 2px;
+        left: 2px;
+        transition: all 0.3s ease;
     }
-    
-    .blue-contrast-mode {
-        --primary: #0066CC !important;
-        --primary-dark: #004999 !important;
-        --dark: #003366 !important;
-        --light: #FFFFFF !important;
-        --gray: #1E1E1E !important;
-        --black: #000033 !important;
-        
-        background-color: var(--black) !important;
-        color: var(--light) !important;
+
+    input[type="checkbox"] {
+        display: none;
     }
-    
-    .dyslexia-font {
-        font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
+
+    input[type="checkbox"]:checked + .toggle-slider {
+        background: var(--primary);
+    }
+
+    input[type="checkbox"]:checked + .toggle-slider::before {
+        transform: translateX(26px);
+    }
+
+    .color-schemes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .color-scheme-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        padding: 15px 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--light);
+    }
+
+    .color-scheme-btn:hover {
+        border-color: var(--primary);
+        transform: translateY(-2px);
+    }
+
+    .color-preview {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .color-preview.default { background: linear-gradient(135deg, #000000, #121212); }
+    .color-preview.high-contrast { background: linear-gradient(135deg, #000000, #FFD700); }
+    .color-preview.light { background: linear-gradient(135deg, #FFFFFF, #F5F5F5); }
+    .color-preview.dark { background: linear-gradient(135deg, #121212, #000000); }
+    .color-preview.blue { background: linear-gradient(135deg, #000033, #0066CC); }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .action-btn {
+        flex: 1;
+        background: var(--gray);
+        color: var(--light);
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+        font-size: 14px;
+    }
+
+    .action-btn:hover {
+        background: var(--primary);
+        color: var(--black);
+    }
+
+    .accessibility-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .secondary-btn {
+        flex: 1;
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .secondary-btn:hover {
+        background: var(--primary);
+        color: var(--black);
+    }
+
+    /* Estilos aplicados dinamicamente na página */
+    .accessibility-dyslexia-mode {
+        font-family: 'Comic Sans MS', 'OpenDyslexic', sans-serif !important;
         letter-spacing: 0.5px !important;
         line-height: 1.8 !important;
     }
-    
-    .big-cursor {
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23FF6B00" stroke="%23FFFFFF" stroke-width="2"/></svg>') 16 16, pointer !important;
+
+    .accessibility-bold-text {
+        font-weight: bold !important;
     }
-    
-    .big-cursor a,
-    .big-cursor button {
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23FF6B00" stroke="%23FFFFFF" stroke-width="2"/></svg>') 16 16, pointer !important;
-    }
-    
-    .no-animations * {
-        animation: none !important;
-        transition: none !important;
-    }
-    
-    .highlighted-links a {
+
+    .accessibility-highlight-links a {
         background-color: yellow !important;
         color: black !important;
         padding: 2px 6px !important;
         border-radius: 4px !important;
         font-weight: bold !important;
     }
-    
+
+    .accessibility-big-cursor {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23FF6B00" stroke="%23FFFFFF" stroke-width="2"/></svg>') 16 16, pointer !important;
+    }
+
+    .accessibility-no-animations * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+
+    /* Modos de cores */
+    .accessibility-high-contrast {
+        --primary: #FFD700 !important;
+        --primary-dark: #FFA500 !important;
+        --dark: #000000 !important;
+        --light: #FFFFFF !important;
+        --gray: #222222 !important;
+        --black: #000000 !important;
+    }
+
+    .accessibility-light-mode {
+        --primary: #FF6B00 !important;
+        --primary-dark: #E05A00 !important;
+        --dark: #F5F5F5 !important;
+        --light: #333333 !important;
+        --gray: #E0E0E0 !important;
+        --black: #FFFFFF !important;
+    }
+
+
+
     @media (max-width: 768px) {
         .accessibility-panel {
-            width: 280px;
-            right: 20px;
-            bottom: 90px;
+            width: 95%;
+            max-height: 85vh;
         }
-        
-        .accessibility-controls {
-            grid-template-columns: 1fr;
+
+        .color-schemes {
+            grid-template-columns: repeat(2, 1fr);
         }
-        
-        .accessibility-floating-btn {
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
+
+        .accessibility-actions {
+            flex-direction: column;
         }
     }
 </style>
 
 <script>
+    // Sistema de Acessibilidade
     document.addEventListener('DOMContentLoaded', function() {
         // Elementos do DOM
         const accessibilityBtn = document.getElementById('accessibilityBtn');
         const accessibilityPanel = document.getElementById('accessibilityPanel');
-        const closePanel = document.getElementById('closePanel');
+        const accessibilityOverlay = document.getElementById('accessibilityOverlay');
+        const closeBtn = document.getElementById('closeAccessibility');
         
-        // Botões de controle
-        const increaseFont = document.getElementById('increaseFont');
-        const decreaseFont = document.getElementById('decreaseFont');
-        const resetFont = document.getElementById('resetFont');
-        const highContrast = document.getElementById('highContrast');
-        const lightBackground = document.getElementById('lightBackground');
-        const blueContrast = document.getElementById('blueContrast');
-        const resetColors = document.getElementById('resetColors');
-        const highlightLinks = document.getElementById('highlightLinks');
-        const dyslexiaFont = document.getElementById('dyslexiaFont');
-        const bigCursor = document.getElementById('bigCursor');
-        const animationsOff = document.getElementById('animationsOff');
-        const readPage = document.getElementById('readPage');
-        const pauseReading = document.getElementById('pauseReading');
-        
-        // Estado das funcionalidades
-        let currentFontSize = 100;
-        let isReading = false;
-        let speechSynthesis = window.speechSynthesis;
-        
-        // Alternar painel de acessibilidade
+        // Controles
+        const fontSizeSlider = document.getElementById('fontSize');
+        const lineHeightSlider = document.getElementById('lineHeight');
+        const letterSpacingSlider = document.getElementById('letterSpacing');
+        const dyslexiaToggle = document.getElementById('dyslexiaMode');
+        const boldTextToggle = document.getElementById('boldText');
+        const highlightLinksToggle = document.getElementById('highlightLinks');
+        const invertColorsToggle = document.getElementById('invertColors');
+        const bigCursorToggle = document.getElementById('bigCursor');
+        const disableAnimationsToggle = document.getElementById('disableAnimations');
+        const resetBtn = document.getElementById('resetSettings');
+        const saveBtn = document.getElementById('saveSettings');
+
+        // Estado inicial
+        let currentSettings = {
+            fontSize: 100,
+            lineHeight: 1.6,
+            letterSpacing: 0,
+            dyslexiaMode: false,
+            boldText: false,
+            highlightLinks: false,
+            invertColors: false,
+            bigCursor: false,
+            disableAnimations: false,
+            colorScheme: 'default'
+        };
+
+        // Abrir painel
         accessibilityBtn.addEventListener('click', function() {
-            accessibilityPanel.classList.toggle('active');
+            accessibilityPanel.classList.add('active');
+            accessibilityOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
-        
-        closePanel.addEventListener('click', function() {
+
+        // Fechar painel
+        function closePanel() {
             accessibilityPanel.classList.remove('active');
-        });
-        
-        // Fechar painel ao clicar fora
-        document.addEventListener('click', function(event) {
-            if (!accessibilityPanel.contains(event.target) && 
-                !accessibilityBtn.contains(event.target) && 
-                accessibilityPanel.classList.contains('active')) {
-                accessibilityPanel.classList.remove('active');
-            }
-        });
-        
-        // Controles de texto
-        increaseFont.addEventListener('click', function() {
-            currentFontSize += 10;
-            if (currentFontSize > 200) currentFontSize = 200;
-            document.body.style.fontSize = currentFontSize + '%';
-            savePreference('fontSize', currentFontSize);
-        });
-        
-        decreaseFont.addEventListener('click', function() {
-            currentFontSize -= 10;
-            if (currentFontSize < 70) currentFontSize = 70;
-            document.body.style.fontSize = currentFontSize + '%';
-            savePreference('fontSize', currentFontSize);
-        });
-        
-        resetFont.addEventListener('click', function() {
-            currentFontSize = 100;
-            document.body.style.fontSize = '100%';
-            savePreference('fontSize', 100);
-        });
-        
-        // Controles de cores CORRIGIDOS
-        highContrast.addEventListener('click', function() {
-            resetAllColorModes();
-            document.body.classList.add('high-contrast-mode');
-            highContrast.classList.add('active');
-            savePreference('colorMode', 'high-contrast');
-        });
-        
-        lightBackground.addEventListener('click', function() {
-            resetAllColorModes();
-            document.body.classList.add('light-background-mode');
-            lightBackground.classList.add('active');
-            savePreference('colorMode', 'light-background');
-        });
-        
-        blueContrast.addEventListener('click', function() {
-            resetAllColorModes();
-            document.body.classList.add('blue-contrast-mode');
-            blueContrast.classList.add('active');
-            savePreference('colorMode', 'blue-contrast');
-        });
-        
-        resetColors.addEventListener('click', function() {
-            resetAllColorModes();
-            savePreference('colorMode', 'default');
-        });
-        
-        function resetAllColorModes() {
-            document.body.classList.remove('high-contrast-mode', 'light-background-mode', 'blue-contrast-mode');
-            [highContrast, lightBackground, blueContrast].forEach(btn => btn.classList.remove('active'));
+            accessibilityOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         }
-        
-        // Outras funcionalidades
-        highlightLinks.addEventListener('click', function() {
-            document.body.classList.toggle('highlighted-links');
-            toggleActiveClass(highlightLinks);
-            savePreference('highlightLinks', document.body.classList.contains('highlighted-links'));
+
+        closeBtn.addEventListener('click', closePanel);
+        accessibilityOverlay.addEventListener('click', closePanel);
+
+        // Event listeners para os controles
+        fontSizeSlider.addEventListener('input', function() {
+            const value = this.value;
+            document.getElementById('fontSizeValue').textContent = value + '%';
+            currentSettings.fontSize = value;
+            applyFontSize(value);
         });
-        
-        dyslexiaFont.addEventListener('click', function() {
-            document.body.classList.toggle('dyslexia-font');
-            toggleActiveClass(dyslexiaFont);
-            savePreference('dyslexiaFont', document.body.classList.contains('dyslexia-font'));
+
+        lineHeightSlider.addEventListener('input', function() {
+            const value = this.value;
+            document.getElementById('lineHeightValue').textContent = value;
+            currentSettings.lineHeight = value;
+            applyLineHeight(value);
         });
-        
-        bigCursor.addEventListener('click', function() {
-            document.body.classList.toggle('big-cursor');
-            toggleActiveClass(bigCursor);
-            savePreference('bigCursor', document.body.classList.contains('big-cursor'));
+
+        letterSpacingSlider.addEventListener('input', function() {
+            const value = this.value;
+            document.getElementById('letterSpacingValue').textContent = value + 'px';
+            currentSettings.letterSpacing = value;
+            applyLetterSpacing(value);
         });
-        
-        animationsOff.addEventListener('click', function() {
-            document.body.classList.toggle('no-animations');
-            toggleActiveClass(animationsOff);
-            savePreference('noAnimations', document.body.classList.contains('no-animations'));
+
+        dyslexiaToggle.addEventListener('change', function() {
+            currentSettings.dyslexiaMode = this.checked;
+            toggleDyslexiaMode(this.checked);
         });
-        
-        // Leitura de página (text-to-speech)
-        readPage.addEventListener('click', function() {
-            if (isReading) {
-                speechSynthesis.cancel();
-                isReading = false;
-                return;
-            }
-            
-            const mainContent = document.querySelector('main') || document.body;
-            const pageText = mainContent.textContent.replace(/\s+/g, ' ').trim();
-            
-            if (pageText.length > 1000) {
-                if (confirm('O texto é muito longo. Deseja ouvir apenas o conteúdo principal?')) {
-                    const importantText = extractImportantText();
-                    readText(importantText);
-                } else {
-                    readText(pageText);
-                }
+
+        boldTextToggle.addEventListener('change', function() {
+            currentSettings.boldText = this.checked;
+            toggleBoldText(this.checked);
+        });
+
+        highlightLinksToggle.addEventListener('change', function() {
+            currentSettings.highlightLinks = this.checked;
+            toggleHighlightLinks(this.checked);
+        });
+
+        invertColorsToggle.addEventListener('change', function() {
+            currentSettings.invertColors = this.checked;
+            toggleInvertColors(this.checked);
+        });
+
+        bigCursorToggle.addEventListener('change', function() {
+            currentSettings.bigCursor = this.checked;
+            toggleBigCursor(this.checked);
+        });
+
+        disableAnimationsToggle.addEventListener('change', function() {
+            currentSettings.disableAnimations = this.checked;
+            toggleAnimations(this.checked);
+        });
+
+        // Esquemas de cores
+        document.querySelectorAll('.color-scheme-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const scheme = this.dataset.scheme;
+                currentSettings.colorScheme = scheme;
+                applyColorScheme(scheme);
+            });
+        });
+
+        // Resetar configurações
+        resetBtn.addEventListener('click', function() {
+            resetAllSettings();
+            alert('Configurações restauradas para os padrões originais!');
+        });
+
+        // Salvar configurações
+        saveBtn.addEventListener('click', function() {
+            saveSettings();
+            alert('Configurações salvas com sucesso!');
+        });
+
+        // ===== FUNÇÕES DE APLICAÇÃO =====
+        function applyFontSize(size) {
+            document.documentElement.style.fontSize = size + '%';
+            // Ajustar elementos específicos proporcionalmente
+            document.querySelectorAll('h1').forEach(h1 => {
+                h1.style.fontSize = `calc(${size/100 * 4}rem)`;
+            });
+            document.querySelectorAll('h2').forEach(h2 => {
+                h2.style.fontSize = `calc(${size/100 * 2.5}rem)`;
+            });
+            document.querySelectorAll('h3').forEach(h3 => {
+                h3.style.fontSize = `calc(${size/100 * 1.8}rem)`;
+            });
+        }
+
+        function applyLineHeight(height) {
+            document.body.style.lineHeight = height;
+        }
+
+        function applyLetterSpacing(spacing) {
+            document.body.style.letterSpacing = spacing + 'px';
+        }
+
+        function toggleDyslexiaMode(enabled) {
+            if (enabled) {
+                document.body.classList.add('accessibility-dyslexia-mode');
             } else {
-                readText(pageText);
+                document.body.classList.remove('accessibility-dyslexia-mode');
             }
-        });
-        
-        pauseReading.addEventListener('click', function() {
-            if (speechSynthesis.speaking) {
-                if (speechSynthesis.paused) {
-                    speechSynthesis.resume();
-                    isReading = true;
-                } else {
-                    speechSynthesis.pause();
-                    isReading = false;
-                }
+        }
+
+        function toggleBoldText(enabled) {
+            if (enabled) {
+                document.body.classList.add('accessibility-bold-text');
+            } else {
+                document.body.classList.remove('accessibility-bold-text');
             }
-        });
-        
-        function readText(text) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'pt-BR';
-            utterance.rate = 0.9;
-            utterance.volume = 0.8;
-            
-            utterance.onend = function() {
-                isReading = false;
+        }
+
+        function toggleHighlightLinks(enabled) {
+            if (enabled) {
+                document.body.classList.add('accessibility-highlight-links');
+            } else {
+                document.body.classList.remove('accessibility-highlight-links');
+            }
+        }
+
+        function toggleInvertColors(enabled) {
+            if (enabled) {
+                document.body.classList.add('accessibility-inverted-colors');
+            } else {
+                document.body.classList.remove('accessibility-inverted-colors');
+            }
+        }
+
+        function toggleBigCursor(enabled) {
+            if (enabled) {
+                document.body.classList.add('accessibility-big-cursor');
+            } else {
+                document.body.classList.remove('accessibility-big-cursor');
+            }
+        }
+
+        function toggleAnimations(enabled) {
+            if (enabled) {
+                document.body.classList.add('accessibility-no-animations');
+            } else {
+                document.body.classList.remove('accessibility-no-animations');
+            }
+        }
+
+        function applyColorScheme(scheme) {
+            // Remover todos os esquemas anteriores
+            document.body.classList.remove(
+                'accessibility-high-contrast',
+                'accessibility-light-mode',
+                'accessibility-blue-mode'
+            );
+
+            // Aplicar novo esquema
+            if (scheme !== 'default') {
+                document.body.classList.add('accessibility-' + scheme + '-mode');
+            }
+
+            // Se for modo escuro (já é o padrão), apenas garantir que outras classes sejam removidas
+            if (scheme === 'dark') {
+                document.body.classList.remove(
+                    'accessibility-high-contrast',
+                    'accessibility-light-mode',
+                    'accessibility-blue-mode'
+                );
+            }
+        }
+
+        function resetAllSettings() {
+            // Resetar sliders
+            fontSizeSlider.value = 100;
+            lineHeightSlider.value = 1.6;
+            letterSpacingSlider.value = 0;
+            document.getElementById('fontSizeValue').textContent = '100%';
+            document.getElementById('lineHeightValue').textContent = '1.6';
+            document.getElementById('letterSpacingValue').textContent = '0px';
+
+            // Resetar toggles
+            dyslexiaToggle.checked = false;
+            boldTextToggle.checked = false;
+            highlightLinksToggle.checked = false;
+            invertColorsToggle.checked = false;
+            bigCursorToggle.checked = false;
+            disableAnimationsToggle.checked = false;
+
+            // Resetar estilos
+            applyFontSize(100);
+            applyLineHeight(1.6);
+            applyLetterSpacing(0);
+            toggleDyslexiaMode(false);
+            toggleBoldText(false);
+            toggleHighlightLinks(false);
+            toggleInvertColors(false);
+            toggleBigCursor(false);
+            toggleAnimations(false);
+            applyColorScheme('default');
+
+            // Resetar estado
+            currentSettings = {
+                fontSize: 100,
+                lineHeight: 1.6,
+                letterSpacing: 0,
+                dyslexiaMode: false,
+                boldText: false,
+                highlightLinks: false,
+                invertColors: false,
+                bigCursor: false,
+                disableAnimations: false,
+                colorScheme: 'default'
             };
-            
-            speechSynthesis.speak(utterance);
-            isReading = true;
+
+            // Limpar localStorage
+            localStorage.removeItem('accessibilitySettings');
         }
-        
-        function extractImportantText() {
-            // Extrai texto dos elementos mais importantes
-            const importantElements = [
-                ...document.querySelectorAll('h1, h2, h3, h4, h5, h6'),
-                ...document.querySelectorAll('.menu-item h3, .feature-card h3, .section-title'),
-                ...document.querySelectorAll('p:not(footer p)')
-            ];
-            
-            return importantElements.map(el => el.textContent).join('. ').replace(/\s+/g, ' ').trim();
+
+        function saveSettings() {
+            localStorage.setItem('accessibilitySettings', JSON.stringify(currentSettings));
         }
-        
-        // Funções auxiliares
-        function toggleActiveClass(element) {
-            element.classList.toggle('active');
-        }
-        
-        function savePreference(key, value) {
-            localStorage.setItem(`accessibility_${key}`, JSON.stringify(value));
-        }
-        
-        function loadPreference(key) {
-            const value = localStorage.getItem(`accessibility_${key}`);
-            return value ? JSON.parse(value) : null;
-        }
-        
-        // Carregar preferências salvas
-        function loadSavedPreferences() {
-            // Tamanho da fonte
-            const savedFontSize = loadPreference('fontSize');
-            if (savedFontSize) {
-                currentFontSize = savedFontSize;
-                document.body.style.fontSize = currentFontSize + '%';
-            }
-            
-            // Modo de cores
-            const colorMode = loadPreference('colorMode');
-            if (colorMode) {
-                resetAllColorModes();
-                if (colorMode === 'high-contrast') {
-                    document.body.classList.add('high-contrast-mode');
-                    highContrast.classList.add('active');
-                } else if (colorMode === 'light-background') {
-                    document.body.classList.add('light-background-mode');
-                    lightBackground.classList.add('active');
-                } else if (colorMode === 'blue-contrast') {
-                    document.body.classList.add('blue-contrast-mode');
-                    blueContrast.classList.add('active');
-                }
-            }
-            
-            // Outras configurações
-            if (loadPreference('highlightLinks')) {
-                document.body.classList.add('highlighted-links');
-                highlightLinks.classList.add('active');
-            }
-            
-            if (loadPreference('dyslexiaFont')) {
-                document.body.classList.add('dyslexia-font');
-                dyslexiaFont.classList.add('active');
-            }
-            
-            if (loadPreference('bigCursor')) {
-                document.body.classList.add('big-cursor');
-                bigCursor.classList.add('active');
-            }
-            
-            if (loadPreference('noAnimations')) {
-                document.body.classList.add('no-animations');
-                animationsOff.classList.add('active');
+
+        function loadSettings() {
+            const saved = localStorage.getItem('accessibilitySettings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                currentSettings = settings;
+
+                // Aplicar configurações salvas
+                fontSizeSlider.value = settings.fontSize;
+                lineHeightSlider.value = settings.lineHeight;
+                letterSpacingSlider.value = settings.letterSpacing;
+                document.getElementById('fontSizeValue').textContent = settings.fontSize + '%';
+                document.getElementById('lineHeightValue').textContent = settings.lineHeight;
+                document.getElementById('letterSpacingValue').textContent = settings.letterSpacing + 'px';
+
+                dyslexiaToggle.checked = settings.dyslexiaMode;
+                boldTextToggle.checked = settings.boldText;
+                highlightLinksToggle.checked = settings.highlightLinks;
+                invertColorsToggle.checked = settings.invertColors;
+                bigCursorToggle.checked = settings.bigCursor;
+                disableAnimationsToggle.checked = settings.disableAnimations;
+
+                applyFontSize(settings.fontSize);
+                applyLineHeight(settings.lineHeight);
+                applyLetterSpacing(settings.letterSpacing);
+                toggleDyslexiaMode(settings.dyslexiaMode);
+                toggleBoldText(settings.boldText);
+                toggleHighlightLinks(settings.highlightLinks);
+                toggleInvertColors(settings.invertColors);
+                toggleBigCursor(settings.bigCursor);
+                toggleAnimations(settings.disableAnimations);
+                applyColorScheme(settings.colorScheme);
             }
         }
-        
-        // Carregar preferências quando a página carregar
-        loadSavedPreferences();
+
+        // Carregar configurações salvas ao iniciar
+        loadSettings();
+
+        // Tecla ESC para fechar
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && accessibilityPanel.classList.contains('active')) {
+                closePanel();
+            }
+        });
     });
+
+            // ===== LEITURA DE PÁGINA =====
+            const readBtn = document.getElementById('readAloud');
+        const pauseBtn = document.getElementById('pauseReading');
+        const stopBtn = document.getElementById('stopReading');
+
+        let utterance = null;
+
+        function lerPagina() {
+            // Pega todo o texto da página
+            const texto = document.body.innerText;
+
+            // Se já tiver uma leitura ativa, para antes de iniciar outra
+            window.speechSynthesis.cancel();
+
+            utterance = new SpeechSynthesisUtterance(texto);
+            utterance.lang = "pt-BR"; // voz em português do Brasil
+            window.speechSynthesis.speak(utterance);
+        }
+
+        readBtn.addEventListener('click', lerPagina);
+
+        pauseBtn.addEventListener('click', function() {
+            if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+                window.speechSynthesis.pause();
+            } else if (window.speechSynthesis.paused) {
+                window.speechSynthesis.resume();
+            }
+        });
+
+        stopBtn.addEventListener('click', function() {
+            window.speechSynthesis.cancel();
+        });
+
+        // Após salvar, inicia a leitura automática
+        saveBtn.addEventListener('click', function() {
+            saveSettings();
+            alert('Configurações salvas com sucesso!');
+            lerPagina();
+        });
+
 </script>
+
+  
+
 </body>
 </html>
